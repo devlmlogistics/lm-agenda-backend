@@ -1,0 +1,46 @@
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+/build
+
+# Environment
+venv
+.venv
+.env
+.env.agenda
+.env.local
+.local-secrets/
+__pycache__/
+*.py[cod]
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+/old-modules
+*.bat
+*.zip
+*.pdf
+*.xls
+*.xlsx
+*.jpg
+
+# System files
+.DS_Store
+Thumbs.db

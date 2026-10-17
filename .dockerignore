@@ -1,0 +1,9 @@
+.git
+.env
+.env.*
+.local-secrets
+frontend
+tests
+__pycache__
+**/__pycache__
+*.pyc
