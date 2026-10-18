@@ -10,7 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt -t /deps
 # Copia el resto del código
 COPY app.py .
 COPY manage_agenda.py .
-COPY .env.example .
 COPY src/ src/
 COPY sql/ sql/
 
