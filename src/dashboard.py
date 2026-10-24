@@ -26,7 +26,7 @@ def _status(completed_at, has_error):
 
 
 def dashboard_transportes(token, selected_date=None):
-    expected_token = os.environ.get("DASHBOARD_KEY", "")
+    expected_token = os.environ.get("DASHBOARD_KEY", "").strip()
     if not expected_token or not hmac.compare_digest(str(token or ""), expected_token):
         return _unauthorized()
 
