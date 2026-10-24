@@ -46,8 +46,13 @@ def dashboard_transportes(token, selected_date=None):
                                d.id_device_gps,
                                (current_timestamp AT TIME ZONE '{TIMEZONE}')::date AS today
                         FROM jotform.planificacion p
-                        LEFT JOIN facturacion.drivers d
-                          ON upper(trim(d.driver)) = upper(trim(p.driver))
+                        LEFT JOIN LATERAL (
+                            SELECT d.id_device_gps
+                            FROM facturacion.drivers d
+                            WHERE upper(trim(d.driver)) = upper(trim(p.driver))
+                            ORDER BY d.id_device_gps NULLS LAST
+                            LIMIT 1
+                        ) d ON TRUE
                         WHERE (:selected_date IS NULL OR p.delivery_date = :selected_date)
                     )
                     SELECT plan.driver,
