@@ -48,6 +48,7 @@ from src.index import formulario_aceptacion_v2
 from src.index import webhook_drayage_aceptacion
 from src.viajes import siguiente_formulario_viaje
 from src.driver_tasks import tareas_programadas_driver, planificacion_supervisor
+from src.dashboard import dashboard_transportes
 from src.agenda_communications import (
     create_message,
     create_user,
@@ -79,7 +80,7 @@ def add_cors_headers(response):
     if origin == FRONTEND_ORIGIN:
         response.headers['Access-Control-Allow-Origin'] = origin
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PATCH, DELETE, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, X-Supervisor-Key, X-Access-Token, X-Driver-Code'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, X-Supervisor-Key, X-Dashboard-Key, X-Access-Token, X-Driver-Code'
         response.headers['Vary'] = 'Origin'
     return response
 
@@ -469,6 +470,14 @@ def get_planificacion_supervisor():
         request.args.get('date'),
         request.args.get('driver'),
         request.args.get('week'),
+    )), 200
+
+
+@app.route('/dashboard/transportes', methods=['GET'])
+def get_dashboard_transportes():
+    return jsonify(dashboard_transportes(
+        request.headers.get('X-Dashboard-Key'),
+        request.args.get('date'),
     )), 200
 
 
